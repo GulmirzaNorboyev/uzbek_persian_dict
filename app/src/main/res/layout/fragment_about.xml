@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cons_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/v_top"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/bitmap"
+        app:layout_constraintEnd_toStartOf="@+id/v_divider"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_top" />
+
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="1.5dp"
+        android:layout_height="0dp"
+        android:background="@color/gray_lighting"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
+        app:layout_constraintEnd_toStartOf="@+id/tv_version"
+        app:layout_constraintStart_toEndOf="@id/iv_logo"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/version"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/v_divider"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo" />
+
+    <View
+        android:id="@+id/v_divider_center"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/gray_lighting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_about"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/train_about"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_divider_center" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_contact_as"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12sp"
+        android:text="@string/contact_as"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_about" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_telegram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_baseline_send"
+        android:drawablePadding="2dp"
+        android:focusable="true"
+        android:padding="2dp"
+        android:text="@string/with_telegram"
+        android:textColor="@color/purple_500"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_contact_as" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_baseline_alternate_email"
+        android:drawablePadding="3dp"
+        android:focusable="true"
+        android:padding="2dp"
+        android:text="@string/with_email"
+        android:textColor="@color/purple_500"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_telegram" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

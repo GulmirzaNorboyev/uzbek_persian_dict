@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.favorite.FavoriteFragment"
+        android:label="@string/menu_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/nav_testing"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.training.TrainingFragment"
+        android:label="@string/menu_test"
+        tools:layout="@layout/fragment_training" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_training" />
+
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.word.WordFragment"
+        android:label=""
+        tools:layout="@layout/fragment_word" />
+
+    <fragment
+        android:id="@+id/nav_favorite_details"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.favorite.detail.FavoriteDetailsFragment"
+        android:label=""
+        tools:layout="@layout/item_detail" />
+
+    <fragment
+        android:id="@+id/nav_train_test"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.training.test.TestFragment"
+        android:label="@string/train_test"
+        tools:layout="@layout/fragment_test" />
+
+    <fragment
+        android:id="@+id/nav_train_sprint"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.training.sprint.SprintFragment"
+        android:label="@string/train_sprint"
+        tools:layout="@layout/fragment_sprint" />
+
+    <fragment
+        android:id="@+id/nav_train_construct"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.training.construct.ConstructorFragment"
+        android:label="@string/train_construct"
+        tools:layout="@layout/fragment_construct" />
+
+    <dialog
+        android:id="@+id/nav_train_editor"
+        android:name="uz.xia.ivat.uzbpersiandictionary.ui.training.edit.EditorFragment"
+        android:label="@string/train_editor"
+        tools:layout="@layout/fragment_editor" />
+
+</navigation>

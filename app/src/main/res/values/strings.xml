@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Ўзбекча-Форсча луғат</string>
+    <string name="app_name_drawer"><![CDATA[Ўзбекча<br>Форсча<br>луғат]]></string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Луғат</string>
+    <string name="menu_favorite">Танланганлар</string>
+    <string name="menu_test">Машғулот</string>
+    <string name="menu_settings">Созламалар</string>
+    <string name="menu_about">Дастур ҳақида</string>
+    <string name="empty_favorites">Танланганлар рўйхати бўш</string>
+    <string name="removed_favorite">Танланганлар рўйхатидан ўчирилди!</string>
+    <string name="removed_train">Машғулот рўйхатидан ўчирилди!</string>
+    <string name="saved_favorite">Танланганлар рўйхатига қўшилди!</string>
+    <string name="saved_train">Машғулот рўйхатига қўшилди!</string>
+    <string name="search_hint">Қидириш</string>
+    <string name="persian_uzb">Форсча → Ўзбекча</string>
+    <string name="persian_uzb_split">Форсча
+        \n→
+        \nЎзбекча</string>
+    <string name="uzb_persian">Ўзбекча → Форсча</string>
+    <string name="uzb_persian_split">Ўзбекча\n
+        →
+        \nФорсча</string>
+    <string name="count_from_totall">%2$s та сўз мавжуд. Жами %1$s та</string>
+    <string name="uzb_persian_sprint">Спринт</string>
+    <string name="uzb_persian_construct">Конструктор</string>
+    <string name="uzb_persian_construct_split">Конструк\nтор</string>
+    <string name="warning_count_min_five">Тестни бошлаш учун сўзлар сони камида 5 та бўлиши лозим! Сўзларни кўпайтириш учун сўзларни машғулотга қошиш тугмасини босинг!</string>
+    <string name="answer_ok">OK</string>
+    <string name="select_correct_answer">Тўғри таржима қилинган вариантни танланг</string>
+    <string name="next_word">Кейинги сўз</string>
+    <string name="title_result_test">Спринт натижаси</string>
+    <string name="title_result_construct">Конструктор натижаси</string>
+    <string name="title_result_sprint">Тест натижаси</string>
+    <string name="title_result_timeout">Вақт тугади</string>
+    <string name="message_test_result">Сиз ушбу %1$d та тестдан %2$d тасига тўғри жавоб бердингиз!</string>
+    <string name="message_construct_result">Сиз ушбу %1$d та сўздан %2$d тасини тўғри топдингиз!</string>
+    <string name="train_test">Машғулот-Тест</string>
+    <string name="train_sprint">Машғулот-Спринт</string>
+    <string name="train_construct">Машғулот-Конструктор</string>
+    <string name="train_editor">Сўзларни таҳрирлаш</string>
+    <string name="correct_word">Тўғри</string>
+    <string name="incorrect_word">Нотўғри</string>
+    <string name="correct_counts">Тўғри жавоблар: %d</string>
+    <string name="checked_correct_answer">Исталган тартибда босиш орқали форсча ҳарфлардан сўзни ҳосил қилинг</string>
+    <string name="title_finish">Якунлаш</string>
+    <string name="train_all">Барчаси</string>
+    <string name="action_delete">Ўчириш</string>
+    <string name="answer_yes">Ҳа</string>
+    <string name="answer_no">Йўқ</string>
+    <string name="title_warning">Диққат!</string>
+    <string name="title_warning_all_favorite">Ростдан ҳам барча танланган сўзларни ўчириб ташламоқчимисиз!?</string>
+    <string name="already_empty_favorite">Танланганлар рўйхати аллақачон бўш!</string>
+    <string name="warning_exit_app_back_pressed">Дастурдан чиқиш учун яна бир марта босинг!</string>
+    <string name="version">Версия: %s</string>
+    <string name="train_about">\tAссалому алайкум! Ушбу Ўзбекча-Форсча луғат дастури орқали сиз форсча сўзларни осон қидириб топишингиз, машқлар орқали сўзларни тез ва осон ёдлашингиз мумкин! Дастурнинг Машғулот қисми орқали эса, сўзларни турли хил тестлар кўринишида ёдлаб боришингиз ва керакли сўзларни белгилаш орқали тест таркибини ўзингиз шакллантириб бориш имкониятига эгасиз!</string>
+    <string name="contact_as">Дастурчи билан боғланиш:</string>
+    <string name="with_telegram">Телеграм орқали</string>
+    <string name="with_email">E-почта орқали</string>
+    <string name="error_telegram_app">Қурилмангизга Телеграм иловаси ўрнатилмаган!</string>
+
+</resources>

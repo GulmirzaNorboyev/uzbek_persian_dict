@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llc_answer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_word_persian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/farsi_kacst_one"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:fontFamily="@font/farsi_kacst_one"
+        tools:text="دمبل" />
+
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.9dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/gray_light" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_select_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:maxLines="2"
+        android:text="@string/select_correct_answer"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="normal" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/rb_answer_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/selector_asnwer_button"
+        android:button="@null"
+        android:checked="true"
+        android:elevation="0.5dp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        tools:text="@string/uzb_persian" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/rb_answer_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/selector_asnwer_button"
+        android:button="@null"
+        android:checked="true"
+        android:elevation="0.5dp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        tools:text="@string/uzb_persian" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/rb_answer_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/selector_asnwer_button"
+        android:button="@null"
+        android:checked="true"
+        android:elevation="0.5dp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        tools:text="@string/uzb_persian" />
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/rb_answer_d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/selector_asnwer_button"
+        android:button="@null"
+        android:checked="true"
+        android:elevation="0.5dp"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        tools:text="@string/uzb_persian" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/ripple_next_button"
+        android:text="@string/next_word"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llc_detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_word_persian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/farsi_kacst_one"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:fontFamily="@font/farsi_kacst_one"
+        tools:text="دمبل" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llc_transcription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_word_transcription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tools:text="@string/menu_about" />
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/tb_fav"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/selector_fav_button"
+            android:checked="false"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="2dp"
+            android:textOff=""
+            android:textOn="" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llc_translate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_word_uzb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tools:text="@string/menu_about" />
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/tb_training"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/selector_train_button"
+            android:checked="false"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="2dp"
+            android:textOff=""
+            android:textOn="" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

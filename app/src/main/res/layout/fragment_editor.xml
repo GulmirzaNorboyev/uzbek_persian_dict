@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llc_editor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llc_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_500"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_baseline_arrow_back" />
+
+        <View
+            android:id="@+id/v_space"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_uzb_persian"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/background_transparent"
+            android:gravity="center"
+            android:text="@string/uzb_persian_split"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_persian_uzb"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:background="@color/background_transparent"
+            android:gravity="center"
+            android:text="@string/persian_uzb_split"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_sprint"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:background="@color/background_transparent"
+            android:gravity="center"
+            android:text="@string/uzb_persian_sprint"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_construct"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:background="@color/background_transparent"
+            android:gravity="center"
+            android:text="@string/uzb_persian_construct_split"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_all"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="1dp"
+            android:background="@color/background_transparent"
+            android:gravity="center"
+            android:text="@string/train_all"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_train"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_edit" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
