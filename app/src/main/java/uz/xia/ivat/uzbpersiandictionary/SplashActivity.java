@@ -7,17 +7,18 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
-public class SplashActivity extends Activity implements Runnable {
+public class SplashActivity extends Activity
+        implements Runnable {
 
     private Handler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+//        setContentView(R.layout.activity_splash);
 
         handler = new Handler();
-        handler.postDelayed(this, 1200);
+        handler.postDelayed(this, 800);
     }
 
     @Override

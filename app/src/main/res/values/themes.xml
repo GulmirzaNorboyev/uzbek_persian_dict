@@ -14,7 +14,7 @@
         <item name="colorControlActivated">#C62828</item>
     </style>
 
-    <style name="Theme.UzbForsLugat.NoActionBar">
+    <style name="Theme.UzbForsLugat.NoActionBar" parent="Theme.UzbForsLugat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="fontFamily">@font/space_grotesk_semibold</item>
@@ -27,6 +27,7 @@
         <item name="fontFamily">@font/space_grotesk_semibold</item>
         <item name="android:fontFamily">@font/space_grotesk_semibold</item>
         <item name="android:navigationBarColor">@color/purple_500</item>
+        <item name="android:windowBackground">@drawable/drawable_splash</item>
     </style>
 
     <style name="Theme.UzbForsLugat.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
