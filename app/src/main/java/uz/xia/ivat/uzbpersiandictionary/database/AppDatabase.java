@@ -21,7 +21,7 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "uzb_persian.db")
                     .createFromAsset("uzb_fors.sqlite")
-//                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return INSTANCE;

@@ -34,7 +34,6 @@ public class WordFragment extends Fragment implements
     private WordViewModel wordViewModel;
     private WordEntity wordEntity;
     private final Observer<List<WordEntity>> observerWordList = list -> {
-        list.add(0, wordEntity);
         detailsAdapter.submitList(list);
     };
     private NavController navController;

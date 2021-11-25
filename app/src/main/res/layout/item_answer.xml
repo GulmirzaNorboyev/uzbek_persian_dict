@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/farsi_kacst_one"
         android:maxLines="2"
-        android:textColor="@color/black"
+        android:textColor="@color/cyan"
         android:textSize="24sp"
         android:textStyle="normal"
         app:fontFamily="@font/farsi_kacst_one"

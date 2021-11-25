@@ -47,9 +47,10 @@ public class DetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         WordEntity wordEntity = asyncListDiffer.getCurrentList().get(position);
-        if (holder instanceof DetailViewHolder) {
+        if (holder instanceof DetailViewHolder)
             ((DetailViewHolder) holder).bind(wordEntity);
-        }
+        else if (holder instanceof WordViewHolder)
+            ((WordViewHolder) holder).bind(wordEntity);
     }
 
     @Override

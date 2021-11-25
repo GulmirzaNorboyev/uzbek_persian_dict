@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
@@ -58,10 +58,10 @@ public class WordViewModel extends AndroidViewModel
         Disposable favDisposable = appDatabase.getFavoriteDao().load(wordEntity.getId())
                 .subscribe(favorite -> {
                     wordEntity.setFavorite(true);
-                    loadWords(wordEntity.getWordUzb());
+                    loadWords(wordEntity, wordEntity.getWordUzb());
                 }, throwable -> {
                     wordEntity.setFavorite(false);
-                    loadWords(wordEntity.getWordUzb());
+                    loadWords(wordEntity, wordEntity.getWordUzb());
                 });
         cd.add(favDisposable);
     }
@@ -176,12 +176,17 @@ public class WordViewModel extends AndroidViewModel
                 });
     }
 
-    private void loadWords(String query) {
-        Disposable d = appDatabase.getWordDao().loadLikelyCyrillic("%" + query.toLowerCase() + "%")
-                .subscribe(liveWordList::postValue,
+    private void loadWords(WordEntity wordEntity, String query) {
+        Disposable d = appDatabase.getWordDao().loadLikelyCyrillicNo(wordEntity.getId(), "%" + query.toLowerCase() + "%")
+                .subscribe(values -> {
+                            values.add(0, wordEntity);
+                            liveWordList.postValue(values);
+                        },
                         throwable -> {
                             Log.e(getClass().getSimpleName(), "Error like: " + throwable.getMessage());
-                            liveWordList.postValue(Collections.emptyList());
+                            List<WordEntity> wordEntities = new ArrayList<>();
+                            wordEntities.add(0, wordEntity);
+                            liveWordList.postValue(wordEntities);
                         });
         cd.add(d);
     }

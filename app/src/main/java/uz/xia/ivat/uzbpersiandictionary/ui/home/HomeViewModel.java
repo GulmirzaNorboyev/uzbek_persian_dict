@@ -1,20 +1,35 @@
 package uz.xia.ivat.uzbpersiandictionary.ui.home;
 
 import android.app.Application;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -27,13 +42,17 @@ import uz.xia.ivat.uzbpersiandictionary.util.GlobalEvents;
 
 public class HomeViewModel extends AndroidViewModel implements
         IHomeViewModel,
-        Observer<Pair<Long, Boolean>> {
+        Observer<Pair<Long, Boolean>>,
+        OnCompleteListener<QuerySnapshot>,
+        OnFailureListener,
+        EventListener<QuerySnapshot> {
 
     private final AppDatabase appDatabase;
     private final CompositeDisposable cd;
     private final List<WordFavorite> favoriteList = new ArrayList<>();
     private final List<TrainEntity> trainList = new ArrayList<>();
-    private final Pattern pattern;
+    private final FirebaseFirestore fireStore;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private MutableLiveData<List<WordEntity>> liveWordList;
     private final Observer<Boolean> observerDeleted = isDeleted -> {
         trainList.clear();
@@ -49,7 +68,9 @@ public class HomeViewModel extends AndroidViewModel implements
         liveWordList = new MutableLiveData<>();
         appDatabase = AppDatabase.getInstance(app.getApplicationContext());
         cd = new CompositeDisposable();
-        pattern = Pattern.compile("[\\u0600-\\u06FF\\u0750-\\u077F\\u0590-\\u05FF\\uFE70-\\uFEFF]");
+        fireStore = FirebaseFirestore.getInstance();
+        loadFromFireStore();
+        updateFromFireStore();
         loadFavoritesFirst();
         GlobalEvents.liveFavoriteChanged.observeForever(this);
         GlobalEvents.liveFavoriteDeleted.observeForever(observerDeleted);
@@ -270,14 +291,7 @@ public class HomeViewModel extends AndroidViewModel implements
     @Override
     public void search(String newText) {
         lastQuery = newText;
-        Matcher matcher = pattern.matcher(newText);
-        if (matcher.matches()) {
-            searchPersian(newText);
-            Log.e(HomeViewModel.class.getSimpleName(), "Persian: " + newText);
-        } else {
-            searchCyrillic(newText);
-            Log.e(HomeViewModel.class.getSimpleName(), "Cyrillic: " + newText);
-        }
+        searchCyrillic(newText);
     }
 
     @Override
@@ -343,5 +357,97 @@ public class HomeViewModel extends AndroidViewModel implements
                 wordEntity.setFavorite(favoritePair.second);
                 break;
             }
+    }
+
+    @Override
+    public void loadFromFireStore() {
+        new Handler().postDelayed((Runnable) () -> {
+            fireStore.collection("dictionary")
+                    .get()
+                    .addOnCompleteListener(this)
+                    .addOnFailureListener(this);
+        }, 5000);
+    }
+
+    @Override
+    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+        List<WordEntity> entitiesFromFirestore = new ArrayList<>();
+        if (task.isSuccessful()) {
+            if (task.getResult() == null) return;
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                if (document.getString("uzb") == null) continue;
+                if (document.getString("fors") == null) continue;
+                entitiesFromFirestore.add(
+                        new WordEntity(
+                                getStringDocument(document, "uzb"),
+                                getStringDocument(document, "fors"),
+                                getStringDocument(document, "read"),
+                                document.getId()
+                        )
+                );
+            }
+
+            if (entitiesFromFirestore.isEmpty()) return;
+            Disposable d = Completable.create(emitter ->
+                    appDatabase.getWordDao()
+                            .saveAll(entitiesFromFirestore))
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                            () -> Log.e(getClass().getSimpleName(), "Saved entities from Firebase Firestore!"),
+                            throwable -> Log.e(getClass().getSimpleName(), "onComplete: ", throwable)
+                    );
+            cd.add(d);
+        } else
+            Log.e(getClass().getSimpleName(), "onComplete: ", task.getException());
+    }
+
+    private String getStringDocument(QueryDocumentSnapshot document, String field) {
+        return (document.getString(field) == null) ? "" : document.getString(field);
+    }
+
+    @Override
+    public void onFailure(@NonNull @NotNull Exception e) {
+        Log.e(getClass().getSimpleName(), e.getMessage());
+    }
+
+    @Override
+    public void updateFromFireStore() {
+        new Handler().postDelayed((Runnable) () -> {
+            fireStore.collection("dictionary")
+                    .addSnapshotListener(executor, this);
+        }, 5000);
+    }
+
+    @Override
+    public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
+        if (value != null) {
+            List<WordEntity> entitiesFromFirestore = new ArrayList<>();
+            for (QueryDocumentSnapshot document : value) {
+                if (document.getString("uzb") == null) continue;
+                if (document.getString("fors") == null) continue;
+                entitiesFromFirestore.add(
+                        new WordEntity(
+                                getStringDocument(document, "uzb"),
+                                getStringDocument(document, "fors"),
+                                getStringDocument(document, "read"),
+                                document.getId()
+                        )
+                );
+            }
+
+            if (entitiesFromFirestore.isEmpty()) return;
+            Disposable d = Completable.create(emitter ->
+                    appDatabase.getWordDao()
+                            .saveAll(entitiesFromFirestore))
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                            () -> Log.e(getClass().getSimpleName(), "Saved entities from Firebase Firestore!"),
+                            throwable -> Log.e(getClass().getSimpleName(), "onComplete: ", throwable)
+                    );
+            cd.add(d);
+        }
+
+        if (error != null)
+            Log.e(getClass().getSimpleName(), error.getMessage());
     }
 }
