@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
-        Log.e(HomeFragment.class.getSimpleName(), "onCreate()");
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -78,7 +77,6 @@ public class HomeFragment extends Fragment
     }
 
     private void setupViews(View view) {
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         recyclerDictionary = view.findViewById(R.id.rv_dictionary);
         if (dictionaryAdapter == null) {
             dictionaryAdapter = new DictionaryAdapter(this);
@@ -174,8 +172,8 @@ public class HomeFragment extends Fragment
                 .debounce(250, TimeUnit.MILLISECONDS)
                 .subscribe(query -> {
                     Log.e(HomeFragment.class.getSimpleName(), "query-> " + query);
-                    if (query.length() > 2)
-                        homeViewModel.search(query);
+                    if (query.length() > 1)
+                        homeViewModel.search(query.toLowerCase());
                     else if (query.isEmpty()) {
                         if (homeViewModel.getLastQuery().isEmpty()) {
                             homeViewModel.clearSearching();
@@ -192,6 +190,8 @@ public class HomeFragment extends Fragment
         Utils.hideKeyboard(requireView());
         Bundle args = new Bundle();
         args.putParcelable(WordFragment.KEY_WORD_ENTITY, word);
+        if (navController == null)
+            navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_details, args);
     }
 

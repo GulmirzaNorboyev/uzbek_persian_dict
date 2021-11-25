@@ -13,9 +13,20 @@ import java.util.Objects;
 
 @Entity(tableName = "uzb_persian_dictionary")
 public class WordEntity implements Parcelable {
+    public static final Creator<WordEntity> CREATOR = new Creator<WordEntity>() {
+        @Override
+        public WordEntity createFromParcel(Parcel in) {
+            return new WordEntity(in);
+        }
+
+        @Override
+        public WordEntity[] newArray(int size) {
+            return new WordEntity[size];
+        }
+    };
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private Long id = 0L;
+    private Long id;
     @ColumnInfo(name = "word_uzb")
     @NonNull
     private String wordUzb = "";
@@ -23,12 +34,19 @@ public class WordEntity implements Parcelable {
     private String wordPersian = "";
     @ColumnInfo(name = "word_transcription")
     private String wordTranscription = "";
+    @NonNull
+    @ColumnInfo(name = "firebase_id")
+    private String firebaseId = "";
     @Ignore
     private boolean isFavorite = false;
     @Ignore
     private boolean isTraining = false;
 
-    public WordEntity() {
+    public WordEntity(@NonNull String wordUzb, String wordPersian, String wordTranscription, @NonNull String firebaseId) {
+        this.wordUzb = wordUzb;
+        this.wordPersian = wordPersian;
+        this.wordTranscription = wordTranscription;
+        this.firebaseId = firebaseId;
     }
 
     protected WordEntity(Parcel in) {
@@ -63,18 +81,6 @@ public class WordEntity implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<WordEntity> CREATOR = new Creator<WordEntity>() {
-        @Override
-        public WordEntity createFromParcel(Parcel in) {
-            return new WordEntity(in);
-        }
-
-        @Override
-        public WordEntity[] newArray(int size) {
-            return new WordEntity[size];
-        }
-    };
 
     @NonNull
     public Long getId() {
@@ -115,15 +121,18 @@ public class WordEntity implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WordEntity that = (WordEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(wordUzb, that.wordUzb) &&
+        return isFavorite == that.isFavorite &&
+                isTraining == that.isTraining &&
+                id.equals(that.id) &&
+                wordUzb.equals(that.wordUzb) &&
                 Objects.equals(wordPersian, that.wordPersian) &&
-                Objects.equals(wordTranscription, that.wordTranscription);
+                Objects.equals(wordTranscription, that.wordTranscription) &&
+                firebaseId.equals(that.firebaseId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, wordUzb, wordPersian, wordTranscription);
+        return Objects.hash(id, wordUzb, wordPersian, wordTranscription, firebaseId, isFavorite, isTraining);
     }
 
     public boolean isFavorite() {
@@ -140,5 +149,14 @@ public class WordEntity implements Parcelable {
 
     public void setTraining(boolean training) {
         isTraining = training;
+    }
+
+    @NonNull
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    public void setFirebaseId(@NonNull String firebaseId) {
+        this.firebaseId = firebaseId;
     }
 }

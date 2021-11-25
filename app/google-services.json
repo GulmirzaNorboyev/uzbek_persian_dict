@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "46084776211",
+    "project_id": "uzbpersiandictionary",
+    "storage_bucket": "uzbpersiandictionary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46084776211:android:7da82f40d20ed4f3317ae6",
+        "android_client_info": {
+          "package_name": "uz.xia.ivat.uzbpersiandictionary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46084776211-ednd5b89j3iqk8m0bl2s1dpvs6b1lcfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj0MgIXAl3jDcxsbKN3xiCBbSLYq-g2cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46084776211-ednd5b89j3iqk8m0bl2s1dpvs6b1lcfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

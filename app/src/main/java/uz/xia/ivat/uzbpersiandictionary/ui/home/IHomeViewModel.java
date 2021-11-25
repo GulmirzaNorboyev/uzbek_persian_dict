@@ -28,4 +28,8 @@ public interface IHomeViewModel {
     void searchCyrillic(String newText);
 
     void clearSearching();
+
+    void loadFromFireStore();
+
+    void updateFromFireStore();
 }
